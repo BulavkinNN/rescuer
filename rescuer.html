@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cool</title>
+
+
+	<style type="text/css">
+		#list {
+			border: solid 1px;
+			margin: 10px 0 10px 0;
+			padding: 15px 5px 15px 5px;
+		}
+		#list>span{
+			border: green solid 2px;
+			margin: 10px;
+			padding: 5px;
+		}
+		#result{
+			margin: 25px 0 15px 0;
+		}
+
+		#result-table{
+			border: solid 1px;
+		}
+		#result-tr >th{
+			border: solid 2px;
+		}
+		.result-tr >td{
+			border: solid 1px;
+		}
+		
+
+	</style>
+</head>
+<body>
+		<h2>Доступно к выбору:</h2>
+	<div id="list">
+		<span class='machine'>Очистить</span>
+		<span class='machine'>Весь ремонт</span>
+	</div>
+
+	<div id="result">
+    
+   	 	<table id="result-table">
+    		<caption>Информация:</caption>
+    			<tr id="result-tr">
+    				<th>Дата</th>
+    				<th>Машина</th>
+    				<th>Неисправность</th>
+    				<th>Причина</th>
+    				<th>Решение</th>
+    			</tr>
+    	</table>
+	</div>
+    
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+
+<script type="text/javascript">
+	
+	let baza = {
+		"00001":{"machine":"Yat","date":"12.12.19","problem":"нет задней передачи","cause":"Джойстик","decision":"Замена джойстика"},
+		"00002":{"machine":"Cat2","date":"12.12.19","problem":"нет задней передачи2","cause":"Джойстик2","decision":"Замена джойстика2"},
+		"00003":{"machine":"over------------","date":"12.12.19","problem":"нет задней передачи2 нет задней передачи2 нет задней передачи2 нет задней передачи2","cause":"Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2","decision":"Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2"},
+		"00004":{"machine":"Cat","date":"12.12.19","problem":"нет задней передачи","cause":"Джойстик","decision":"Замена джойстика"},
+		"00005":{"machine":"Cat2","date":"12.12.19","problem":"нет задней передачи2","cause":"Джойстик2","decision":"Замена джойстика2"},
+		"00006":{"machine":"Over------------","date":"12.12.19","problem":"нет задней передачи2 нет задней передачи2 нет задней передачи2 нет задней передачи2","cause":"Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2Джойстик2","decision":"Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2Замена джойстика2"},
+	};
+
+
+// Реализовать нажатие на выбранную "machine" - пробежать  по массиву и распечатать по этой машине данные
+
+function init(){
+$( ".machine").click(function() {
+  findMc(this.innerHTML);
+});
+
+};
+
+
+
+// Пробежаться по массиву baza, закинуть значения в коллекцию сет - "machine" и  распечатать в див значения
+//Transform to array to Sort
+function getMachine (){
+let setM = new Set();
+//Need to  make list with only не повторяющимися  значениями
+Object.values(baza).forEach(value => {setM.add(value.machine)});
+Array.from(setM).sort().forEach(value => {addToDivMs(value)});
+
+  
+};
+
+function getResult (){
+Object.values(baza).forEach(value => {
+  addToResult(value);
+})
+};
+
+// if select all repair --> add to result all
+function findMc (Mashine){
+	$( ".result-tr").remove(); //clear list repair 
+Object.values(baza).forEach(value => {if (value.machine==Mashine ||"Весь ремонт"==Mashine){addToResult (value)}});
+};
+
+// Insert div > list 
+function addToDivMs (Mashine){
+$("#list").append("<span class='machine'>"+Mashine+"</span>")
+};
+
+
+function addToResult (Object){
+$("#result-table").append("<tr class='result-tr'><td>"+Object.date+"</td><td>"+Object.machine+"</td><td> "+Object.problem+"</td><td> "+Object.cause+" </td><td>"+Object.decision+" </td></tr>")	
+}
+
+
+getMachine();
+init();
+</script>
+
+</body>
+</html>
