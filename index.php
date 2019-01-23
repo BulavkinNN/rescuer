@@ -7,11 +7,13 @@
 	<title>Электрикам</title>
 </head>
 <body>
+  <div id="question">
 	<h5>Введи пароль:</h5>
 <form action=index.php method=POST>
 <input type=text name=pas>
 <input type=submit>
 </form>
+</div>
 </body>
 </html>
 

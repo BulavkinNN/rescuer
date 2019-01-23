@@ -14,7 +14,22 @@
 
 <p>C 16,01,2019 Sennebogen 850 Датчик уровня топлива отключен. Вместо него впаяли 20 Ом. Мерять топливо нужно вручную</p> 
 <p>Sennebogen 835-1 необходима замена замка зажигания (до марта)</p>
-<h1>Доступно к выбору:</h1>
+<h1>Необходимо:</h1>
+<p>
+<?php
+//Скрипт добавляет необходимые запчасти
+$str = htmlentities(file_get_contents("./public/need.txt"));
+echo $str;
+?>
+	
+</p>
+<br><br>
+<form action="php/addNeed.php" method="POST">
+    Добавить в список: <input type="text" name="need" />
+     <input type="submit" value="Ок!">
+</form>
+
+<h1>История. Доступно к выбору:</h1>
 	<div id="list">
 		<div id="list1">
 		<span class='machine'>Очистить</span>
