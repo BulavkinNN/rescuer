@@ -42,6 +42,7 @@ function addToResult (Object){
 $("#result-table").append("<tr class='result-tr'><td>"+Object.date+"</td><td>"+Object.machine+"</td><td> "+Object.problem+"</td><td> "+Object.cause+" </td><td>"+Object.decision+" </td></tr>")	
 }
 
+$( "#question").hide(); //Hide password 
 $( "#result-table").hide(); //Hide information
 getMachine();
 init();

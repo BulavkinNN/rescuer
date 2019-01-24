@@ -7,14 +7,24 @@
 	<title></title>
 </head>
 <body>
+
+
 <?php
-$str = htmlentities(file_get_contents("./public/need.txt"));
-echo $str;
+require_once 'php/connection.php'; // подключаем скрипт
+ echo " require_once";
+// подключаемся к серверу
+$link = mysqli_connect($host, $user, $password, $database) 
+    or die("Ошибка " . mysqli_error($link));
+ 
+// выполняем операции с базой данных
+    echo "all right"; 
+// закрываем подключение
+mysqli_close($link);
 ?>
-<form action="php/addNeed.php" method="POST">
-    Добавить в список: <input type="text" name="need" />
-     <input type="submit" value="Ок!">
-</form>
+
+
+
+
 
 
 </body>
